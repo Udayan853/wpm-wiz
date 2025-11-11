@@ -1,5 +1,5 @@
-import { WordProps } from "@/types/types";
-import { Letter } from "./letter";
+import { WordProps } from "@/types";
+import { Letter } from "./Letter";
 
 export function Word({ curWord, curWordIdx, activeState }: WordProps) {
     const letters = curWord.split('');
@@ -10,6 +10,7 @@ export function Word({ curWord, curWordIdx, activeState }: WordProps) {
                     key={charId}
                     character={ch}
                     active={curWordIdx === activeState.wordIdx && charId === activeState.charIdx}
+                    completed={curWordIdx < activeState.wordIdx || (curWordIdx === activeState.wordIdx && charId < activeState.charIdx)}
                 />
             ))}
         </div>

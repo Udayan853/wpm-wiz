@@ -5,15 +5,22 @@ export interface ActiveState {
     charIdx: number;
 }
 
+export interface WordListProps {
+    activeState: ActiveState;
+    input: string;
+}
+
 export interface WordProps {
     activeState: ActiveState;
     curWordIdx: number;
     curWord: string;
+    input: string;
 }
 
 export interface LetterProps {
     character: string;
     active: boolean;
+    completed: boolean;
 }
 
 export type DispatchActiveState = Dispatch<SetStateAction<ActiveState>>
