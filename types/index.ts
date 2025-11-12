@@ -21,6 +21,7 @@ export interface LetterProps {
     character: string;
     active: boolean;
     completed: boolean;
+    color: string;
 }
 
 export type DispatchActiveState = Dispatch<SetStateAction<ActiveState>>

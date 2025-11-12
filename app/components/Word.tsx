@@ -1,8 +1,10 @@
 import { WordProps } from "@/types";
 import { Letter } from "./Letter";
+import { getColor } from "../util";
 
-export function Word({ curWord, curWordIdx, activeState }: WordProps) {
+export function Word({ curWord, curWordIdx, activeState, input }: WordProps) {
     const letters = curWord.split('');
+    const spaceActive = curWordIdx === activeState.wordIdx && curWord.length === activeState.charIdx;
     return (
         <div className="h-fit">
             {letters.map((ch, charId) => (
@@ -11,8 +13,15 @@ export function Word({ curWord, curWordIdx, activeState }: WordProps) {
                     character={ch}
                     active={curWordIdx === activeState.wordIdx && charId === activeState.charIdx}
                     completed={curWordIdx < activeState.wordIdx || (curWordIdx === activeState.wordIdx && charId < activeState.charIdx)}
+                    color={getColor(input, curWordIdx, charId)}
                 />
             ))}
+            <Letter
+                character={"\u00A0"}
+                active={spaceActive}
+                completed={curWordIdx < activeState.wordIdx}
+                color={getColor(input, curWordIdx, curWord.length)}
+            />
         </div>
     );
 }

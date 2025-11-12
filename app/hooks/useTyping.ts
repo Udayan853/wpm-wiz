@@ -15,6 +15,7 @@ export function useTyping() {
 
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         const diff = e.target.value.length - input.length;
+        const latestCharacter = e.target.value !== '' ? e.target.value.at(-1) : '';
         setActiveState((prev) => {
             let newCharIdx = prev.charIdx;
             let newWordIdx = prev.wordIdx;
@@ -23,12 +24,12 @@ export function useTyping() {
                 if (prev.charIdx - 1 >= 0) newCharIdx--;
                 else if (prev.wordIdx - 1 >= 0) {
                     newWordIdx--;
-                    newCharIdx = words[prev.wordIdx - 1].length - 1;
+                    newCharIdx = words[prev.wordIdx - 1].length;
                 }
             }
             else if (diff > 0) {
-                if (prev.charIdx + 1 < words[prev.wordIdx].length) newCharIdx++;
-                else if (prev.wordIdx + 1 < words.length) {
+                if (prev.charIdx < words[prev.wordIdx].length) newCharIdx++;
+                else if (latestCharacter === ' ' && prev.wordIdx + 1 < words.length) {
                     newWordIdx++;
                     newCharIdx = 0;
                 };
