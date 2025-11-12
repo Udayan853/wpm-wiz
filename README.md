@@ -6,8 +6,9 @@
 
 - [x] Interactivity (correct/incorrect highlighting)
 - [x] Input out of focus prompt
-- [ ] Timeout
+- [x] Timeout
 - [ ] WPM
+- [ ] Randomised Input
 - [ ] Statistics Graph
 - [ ] Deployment
 

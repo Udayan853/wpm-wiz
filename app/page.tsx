@@ -2,32 +2,44 @@
 
 import { useTyping } from "./hooks/useTyping";
 import { WordList } from "./components/WordList";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useTimer } from "./hooks/useTimer";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
-  const { input, inputRef, handleInputChange, activeState } = useTyping();
+  const { time, pause, start } = useTimer(30);
+  const router = useRouter();
+  const { input, inputRef, handleInputChange, activeState } = useTyping(start);
   const [focused, setFocused] = useState(true);
+
+  useEffect(() => {
+    if (time === 0) {
+      router.replace('/statistics');
+    }
+  }, [time, router])
 
   return (
     <div
-      className="flex justify-center items-center text-3xl h-full"
-      onClick={() => {
-        setFocused(true)
-        console.log('called onFocus');
+      className="flex flex-col justify-center items-center text-3xl h-full"
+      onMouseDown={(e) => {
+        e.preventDefault();
         inputRef.current?.focus();
       }}
-      onBlur={() => {
-        setFocused(false)
-        console.log('called onBlur');
-        inputRef.current?.blur();
-      }}
     >
+      <div className="">
+        {time}s
+      </div>
       <input
         type="text"
         className="absolute opacity-0 focus:outline-none"
         value={input}
         onChange={handleInputChange}
         ref={inputRef}
+        onFocus={() => setFocused(true)}
+        onBlur={() => {
+          setFocused(false);
+          pause();
+        }}
       />
       <WordList
         activeState={activeState}
@@ -37,3 +49,5 @@ export default function Home() {
     </div>
   );
 }
+
+// 

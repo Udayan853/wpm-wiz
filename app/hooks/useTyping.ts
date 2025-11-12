@@ -4,7 +4,7 @@ import { useState, useRef, useEffect, ChangeEvent } from "react";
 import { ActiveState } from "@/types";
 import { words } from "../assets";
 
-export function useTyping() {
+export function useTyping(start: () => void) {
     const [activeState, setActiveState] = useState<ActiveState>({ charIdx: 0, wordIdx: 0 });
     const [input, setInput] = useState('');
     const inputRef = useRef<HTMLInputElement>(null);
@@ -12,6 +12,7 @@ export function useTyping() {
     useEffect(() => inputRef.current?.focus(), [])
 
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+        start();
         const diff = e.target.value.length - input.length;
         const latestCharacter = e.target.value !== '' ? e.target.value.at(-1) : '';
         setActiveState((prev) => {
