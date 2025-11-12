@@ -2,11 +2,11 @@ import { WordProps } from "@/types";
 import { Letter } from "./Letter";
 import { getColor } from "../util";
 
-export function Word({ curWord, curWordIdx, activeState, input }: WordProps) {
+export function Word({ curWord, curWordIdx, activeState, input, focused }: WordProps) {
     const letters = curWord.split('');
     const spaceActive = curWordIdx === activeState.wordIdx && curWord.length === activeState.charIdx;
     return (
-        <div className="h-fit">
+        <div className={`h-fit ${focused ? '' : 'blur-sm'}`}>
             {letters.map((ch, charId) => (
                 <Letter
                     key={charId}

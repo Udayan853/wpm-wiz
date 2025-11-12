@@ -5,7 +5,7 @@
 ### Priority
 
 - [x] Interactivity (correct/incorrect highlighting)
-- [ ] Input out of focus prompt
+- [x] Input out of focus prompt
 - [ ] Timeout
 - [ ] WPM
 - [ ] Statistics Graph

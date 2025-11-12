@@ -9,9 +9,7 @@ export function useTyping() {
     const [input, setInput] = useState('');
     const inputRef = useRef<HTMLInputElement>(null);
 
-    useEffect(() => {
-        inputRef.current?.focus();
-    }, []);
+    useEffect(() => inputRef.current?.focus(), [])
 
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         const diff = e.target.value.length - input.length;
