@@ -5,18 +5,19 @@ import { WordList } from "./components/WordList";
 import { useEffect, useState } from "react";
 import { useTimer } from "./hooks/useTimer";
 import { useRouter } from "next/navigation";
+import { getWordCount } from "./util";
 
 export default function Home() {
   const { time, pause, start } = useTimer(30);
-  const router = useRouter();
   const { input, inputRef, handleInputChange, activeState } = useTyping(start);
   const [focused, setFocused] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
     if (time === 0) {
-      router.replace('/statistics');
+      router.replace('/statistics?typed=' + getWordCount(input));
     }
-  }, [time, router])
+  }, [time, router, input])
 
   return (
     <div
@@ -49,5 +50,3 @@ export default function Home() {
     </div>
   );
 }
-
-// 

@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect, ChangeEvent } from "react";
 import { ActiveState } from "@/types";
-import { words } from "../assets";
+import { words } from "@/assets";
 
 export function useTyping(start: () => void) {
     const [activeState, setActiveState] = useState<ActiveState>({ charIdx: 0, wordIdx: 0 });

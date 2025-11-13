@@ -1,10 +1,8 @@
-import { words } from "../assets";
+import { words } from "@/assets";
 
 export function getColor(input: string, curWordIdx: number, curCharIdx: number) {
     let targetIdx = 0;
-    for (let idx = 0; idx < curWordIdx; idx++) {
-        targetIdx += words[idx].length;
-    }
+    words.forEach((word) => targetIdx += word.length);
     targetIdx += curWordIdx + curCharIdx;
 
     if (targetIdx < input.length) {
@@ -15,4 +13,15 @@ export function getColor(input: string, curWordIdx: number, curCharIdx: number) 
     }
 
     return '';
+}
+
+export function getWordCount(input: string) {
+    const extractedWords = input.split(' ');
+
+    let total = 0;
+    extractedWords.forEach((word) => {
+        if (word.length >= 1) total++;
+    })
+
+    return total
 }

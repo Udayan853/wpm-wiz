@@ -7,9 +7,10 @@
 - [x] Interactivity (correct/incorrect highlighting)
 - [x] Input out of focus prompt
 - [x] Timeout
-- [ ] WPM
+- [x] WPM
 - [ ] Randomised Input
 - [ ] Statistics Graph
+- [ ] Improve UI/UX
 - [ ] Deployment
 
 ### Potential improvements
