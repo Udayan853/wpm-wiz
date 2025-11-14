@@ -1,35 +1,26 @@
 "use client";
 
-import { useTyping } from "./hooks/useTyping";
-import { WordList } from "./components/WordList";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useTimer } from "./hooks/useTimer";
-import { useRouter } from "next/navigation";
-import { getWordCount } from "./util";
+import { useTyping } from "./hooks/useTyping";
+import { useTimeoutRedirect } from "./hooks/useTimoutRedirect";
+import { WordList } from "./components/WordList";
+import { ClientOnly } from "./components/ClientOnly";
 
 export default function Home() {
   const { time, pause, start } = useTimer(30);
-  const { input, inputRef, handleInputChange, activeState } = useTyping(start);
+  const { input, inputRef, handleInputChange, activeState, words } = useTyping(start);
   const [focused, setFocused] = useState(true);
-  const router = useRouter();
-
-  useEffect(() => {
-    if (time === 0) {
-      router.replace('/statistics?typed=' + getWordCount(input));
-    }
-  }, [time, router, input])
+  useTimeoutRedirect(time, input);
 
   return (
     <div
-      className="flex flex-col justify-center items-center text-3xl h-full"
+      className="flex flex-col justify-center items-center text-3xl h-full w-screen overflow-hidden"
       onMouseDown={(e) => {
         e.preventDefault();
         inputRef.current?.focus();
       }}
     >
-      <div className="">
-        {time}s
-      </div>
       <input
         type="text"
         className="absolute opacity-0 focus:outline-none"
@@ -42,11 +33,17 @@ export default function Home() {
           pause();
         }}
       />
-      <WordList
-        activeState={activeState}
-        input={input}
-        focused={focused}
-      />
+      <ClientOnly>
+        <div className="">
+          {time}s
+        </div>
+        <WordList
+          activeState={activeState}
+          input={input}
+          focused={focused}
+          words={words}
+        />
+      </ClientOnly>
     </div>
   );
 }

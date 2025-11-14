@@ -1,6 +1,7 @@
 import { LetterProps } from "@/types"
+import React from "react";
 
-export function Letter({ character, active, completed, color }: LetterProps) {
+function LetterComponent({ character, active, completed, color }: LetterProps) {
     const opacity = completed ? '' : 'opacity-50';
     const cursor = active ? 'border-s-yellow-800' : 'border-transparent';
     return (
@@ -11,3 +12,5 @@ export function Letter({ character, active, completed, color }: LetterProps) {
         </ span>
     )
 }
+
+export const Letter = React.memo(LetterComponent);

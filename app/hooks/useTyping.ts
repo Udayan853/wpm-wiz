@@ -1,15 +1,20 @@
-"use client"
+"use client";
 
 import { useState, useRef, useEffect, ChangeEvent } from "react";
 import { ActiveState } from "@/types";
-import { words } from "@/assets";
+import { allWords } from "@/assets";
 
 export function useTyping(start: () => void) {
     const [activeState, setActiveState] = useState<ActiveState>({ charIdx: 0, wordIdx: 0 });
     const [input, setInput] = useState('');
     const inputRef = useRef<HTMLInputElement>(null);
 
-    useEffect(() => inputRef.current?.focus(), [])
+    const [words] = useState<string[]>(() => {
+        const lb = Math.floor(Math.random() * 700);
+        return allWords.slice(lb, lb + 300);
+    });
+
+    useEffect(() => inputRef.current?.focus(), []);
 
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         start();
@@ -40,5 +45,5 @@ export function useTyping(start: () => void) {
         setInput(() => e.target.value);
     }
 
-    return { activeState, input, handleInputChange, inputRef }
+    return { activeState, input, handleInputChange, inputRef, words }
 }

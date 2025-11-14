@@ -8,7 +8,7 @@
 - [x] Input out of focus prompt
 - [x] Timeout
 - [x] WPM
-- [ ] Randomised Input
+- [x] Randomised Input
 - [ ] Statistics Graph
 - [ ] Improve UI/UX
 - [ ] Deployment

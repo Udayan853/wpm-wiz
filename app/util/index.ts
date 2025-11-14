@@ -1,8 +1,8 @@
-import { words } from "@/assets";
-
-export function getColor(input: string, curWordIdx: number, curCharIdx: number) {
+export function getColor(input: string, curWordIdx: number, curCharIdx: number, words: string[]) {
     let targetIdx = 0;
-    words.forEach((word) => targetIdx += word.length);
+    for (let i = 0; i < curWordIdx; i++) {
+        targetIdx += words[i].length;
+    }
     targetIdx += curWordIdx + curCharIdx;
 
     if (targetIdx < input.length) {

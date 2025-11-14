@@ -9,6 +9,7 @@ export interface WordListProps {
     activeState: ActiveState;
     input: string;
     focused: boolean;
+    words: string[];
 }
 
 export interface WordProps {
@@ -17,6 +18,7 @@ export interface WordProps {
     curWord: string;
     input: string;
     focused: boolean;
+    words: string[];
 }
 
 export interface LetterProps {
