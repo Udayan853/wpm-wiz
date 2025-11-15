@@ -1,31 +1,26 @@
-import { Dispatch, SetStateAction } from "react";
-
-export interface ActiveState {
-    wordIdx: number;
-    charIdx: number;
-}
+import { RefObject } from "react";
 
 export interface WordListProps {
-    activeState: ActiveState;
     input: string;
     focused: boolean;
-    words: string[];
+    letters: string[];
+    curIdxRef: RefObject<number>
+}
+
+export interface WordSegment {
+    startIndex: number;
+    word: string[];
 }
 
 export interface WordProps {
-    activeState: ActiveState;
-    curWordIdx: number;
-    curWord: string;
     input: string;
-    focused: boolean;
-    words: string[];
+    startIndex: number;
+    word: string[];
+    curIdxRef: RefObject<number>
 }
 
 export interface LetterProps {
     character: string;
     active: boolean;
-    completed: boolean;
     color: string;
 }
-
-export type DispatchActiveState = Dispatch<SetStateAction<ActiveState>>

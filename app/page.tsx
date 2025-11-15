@@ -9,7 +9,7 @@ import { ClientOnly } from "./components/ClientOnly";
 
 export default function Home() {
   const { time, pause, start } = useTimer(30);
-  const { input, inputRef, handleInputChange, activeState, words } = useTyping(start);
+  const { input, inputRef, handleInputChange, curIdxRef, letters } = useTyping(start);
   const [focused, setFocused] = useState(true);
   useTimeoutRedirect(time, input);
 
@@ -38,10 +38,10 @@ export default function Home() {
           {time}s
         </div>
         <WordList
-          activeState={activeState}
+          curIdxRef={curIdxRef}
           input={input}
           focused={focused}
-          words={words}
+          letters={letters}
         />
       </ClientOnly>
     </div>
