@@ -9,7 +9,8 @@
 - [x] Timeout
 - [x] WPM
 - [x] Randomised Input
-- [ ] Statistics Graph
+- [x] Statistics Graph
+- [ ] Click sound for each keystroke
 - [ ] Improve UI/UX
 - [ ] Deployment
 
@@ -18,3 +19,4 @@
 - [ ] Custom timeout
 - [ ] Special characters
 - [ ] Spritesheet animation (changes speed dynamically with WPM)
+- [ ] Custom theming

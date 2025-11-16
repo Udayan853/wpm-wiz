@@ -1,8 +1,12 @@
-import { useRef, useState } from "react";
+import { WpmTimestamp } from "@/types";
+import { useEffect, useRef, useState } from "react";
 
-export function useTimer(interval = 30) {
+export function useTimer(input: string, focused: boolean, interval = 30) {
     const [time, setTime] = useState(interval);
+    const wpmTimestampRef = useRef<WpmTimestamp[]>([]);
     const intervalRef = useRef<NodeJS.Timeout | null>(null);
+    const inputLengthRef = useRef(0);
+    const timeRef = useRef(interval);
 
     const start = () => {
         if (intervalRef.current) return;
@@ -14,6 +18,8 @@ export function useTimer(interval = 30) {
                 }
                 return prev - 1;
             });
+            wpmTimestampRef.current.push({ time: 31 - timeRef.current, wpm: (inputLengthRef.current / 5) * (60 / (31 - timeRef.current)) });
+            timeRef.current--;
         }, 1000);
     }
 
@@ -24,5 +30,15 @@ export function useTimer(interval = 30) {
         }
     }
 
-    return { start, pause, time }
+    useEffect(() => {
+        console.log()
+        inputLengthRef.current = input.length;
+        if (input.length >= 1) start()
+    }, [input.length]);
+
+    useEffect(() => {
+        if (!focused) pause();
+    }, [focused]);
+
+    return { start, pause, time, wpmTimestampRef };
 }

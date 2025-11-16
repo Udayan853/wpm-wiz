@@ -4,7 +4,7 @@ import { useState, useRef, useEffect, ChangeEvent } from "react";
 import { allWords } from "@/assets";
 import { allWordsToLetters } from "../util";
 
-export function useTyping(start: () => void) {
+export function useTyping() {
     const curIdxRef = useRef(0);
     const inputRef = useRef<HTMLInputElement>(null);
 
@@ -14,7 +14,6 @@ export function useTyping(start: () => void) {
     useEffect(() => inputRef.current?.focus(), []);
 
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-        start();
         if (e.target.value.length > input.length) {
             curIdxRef.current++;
             setInput(() => e.target.value);

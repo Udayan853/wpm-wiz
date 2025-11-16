@@ -8,10 +8,10 @@ import { WordList } from "./components/WordList";
 import { ClientOnly } from "./components/ClientOnly";
 
 export default function Home() {
-  const { time, pause, start } = useTimer(30);
-  const { input, inputRef, handleInputChange, curIdxRef, letters } = useTyping(start);
   const [focused, setFocused] = useState(true);
-  useTimeoutRedirect(time, input);
+  const { input, inputRef, handleInputChange, curIdxRef, letters } = useTyping();
+  const { time, wpmTimestampRef } = useTimer(input, focused);
+  useTimeoutRedirect(time, wpmTimestampRef);
 
   return (
     <div
@@ -28,10 +28,7 @@ export default function Home() {
         onChange={handleInputChange}
         ref={inputRef}
         onFocus={() => setFocused(true)}
-        onBlur={() => {
-          setFocused(false);
-          pause();
-        }}
+        onBlur={() => setFocused(false)}
       />
       <ClientOnly>
         <div className="">

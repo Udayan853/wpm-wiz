@@ -24,3 +24,8 @@ export interface LetterProps {
     active: boolean;
     color: string;
 }
+
+export interface WpmTimestamp {
+    time: number;
+    wpm: number;
+}

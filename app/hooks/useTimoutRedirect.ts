@@ -1,15 +1,16 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
-import { getWordCount } from "../util";
+import { RefObject, useEffect } from "react";
+import { WpmTimestamp } from "@/types";
 
-export function useTimeoutRedirect(time: number, input: string) {
+export function useTimeoutRedirect(time: number, wpmTimestampRef: RefObject<WpmTimestamp[]>) {
     const router = useRouter();
 
     useEffect(() => {
         if (time === 0) {
-            router.replace('/statistics?typed=' + getWordCount(input));
+            localStorage.setItem('wpm-timestamp-data', JSON.stringify(wpmTimestampRef.current));
+            router.replace('/statistics');
         }
-    }, [time, router, input])
+    }, [time, router, wpmTimestampRef])
 }
