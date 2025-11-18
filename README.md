@@ -10,7 +10,7 @@
 - [x] WPM
 - [x] Randomised Input
 - [x] Statistics Graph
-- [ ] Click sound for each keystroke
+- [x] Click sound for each keystroke
 - [ ] Improve UI/UX
 - [ ] Deployment
 
