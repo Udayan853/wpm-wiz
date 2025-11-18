@@ -1,25 +1,25 @@
 "use client";
 
-import { useState, useRef, useEffect, ChangeEvent } from "react";
+import { useState, useRef, useEffect } from "react";
 import { allWords } from "@/assets";
 import { allWordsToLetters } from "../util";
 
 export function useTyping() {
-    const curIdxRef = useRef(0);
     const inputRef = useRef<HTMLInputElement>(null);
 
     const [input, setInput] = useState('');
+    const [caretPos, setCaretPos] = useState(0);
     const [letters] = useState<string[]>(allWordsToLetters(allWords));
 
     useEffect(() => inputRef.current?.focus(), []);
 
-    const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-        if (e.target.value.length > input.length) {
-            curIdxRef.current++;
-            setInput(() => e.target.value);
+    const handleInputChange = (value: string) => {
+        if (value.length > input.length) {
+            setCaretPos(prev => prev + 1);
+            setInput(() => value);
         }
-        else if (e.target.value.length < input.length) setInput((prev) => prev);
+        else if (value.length < input.length) setInput(prev => prev);
     };
 
-    return { curIdxRef, input, handleInputChange, inputRef, letters };
+    return { input, handleInputChange, inputRef, letters, caretPos };
 }

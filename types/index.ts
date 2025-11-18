@@ -4,7 +4,7 @@ export interface WordListProps {
     input: string;
     focused: boolean;
     letters: string[];
-    curIdxRef: RefObject<number>
+    caretPos: number;
 }
 
 export interface WordSegment {
@@ -16,7 +16,8 @@ export interface WordProps {
     input: string;
     startIndex: number;
     word: string[];
-    curIdxRef: RefObject<number>
+    caretPos: number;
+    activeWordRef: RefObject<HTMLDivElement | null> | null;
 }
 
 export interface LetterProps {

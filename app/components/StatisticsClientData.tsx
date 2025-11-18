@@ -12,7 +12,7 @@ export function StatisticsClientData() {
                         WPM
                     </div>
                     <div>
-                        {Math.round(wpmTimestamps[wpmTimestamps.length - 1].wpm)}
+                        {Math.round(wpmTimestamps[wpmTimestamps.length - 1]?.wpm ?? 0)}
                     </div>
                 </div>
                 <div className="border m-4 rounded-xl flex flex-col items-center p-2">

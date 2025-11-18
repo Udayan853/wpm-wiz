@@ -9,7 +9,7 @@ import { ClientOnly } from "./components/ClientOnly";
 
 export default function Home() {
   const [focused, setFocused] = useState(true);
-  const { input, inputRef, handleInputChange, curIdxRef, letters } = useTyping();
+  const { input, inputRef, handleInputChange, letters, caretPos } = useTyping();
   const { time, wpmTimestampRef } = useTimer(input, focused);
   useTimeoutRedirect(time, wpmTimestampRef);
 
@@ -23,22 +23,33 @@ export default function Home() {
     >
       <input
         type="text"
-        className="absolute opacity-0 focus:outline-none"
+        className="absolute opacity-0 focus:outline-none w-px"
         value={input}
-        onChange={handleInputChange}
+        onChange={(e) => {
+          if (e.nativeEvent instanceof KeyboardEvent) {
+            if (e.nativeEvent.isComposing) return;
+          }
+          handleInputChange(e.target.value);
+        }}
         ref={inputRef}
+        spellCheck="false"
+        autoCorrect="off"
+        autoCapitalize="none"
+        autoComplete="off"
+        aria-autocomplete="none"
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
+        onCompositionEnd={(e) => handleInputChange(e.currentTarget.value)}
       />
       <ClientOnly>
         <div className="">
           {time}s
         </div>
         <WordList
-          curIdxRef={curIdxRef}
           input={input}
           focused={focused}
           letters={letters}
+          caretPos={caretPos}
         />
       </ClientOnly>
     </div>
