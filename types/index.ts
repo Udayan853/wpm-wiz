@@ -26,6 +26,16 @@ export interface LetterProps {
     color: string;
 }
 
+export interface Metrics {
+    correct: number;
+    incorrect: number;
+}
+
+export interface StatCardProps {
+    title: string;
+    value: number;
+}
+
 export interface WpmTimestamp {
     time: number;
     wpm: number;

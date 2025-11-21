@@ -11,6 +11,8 @@
 - [x] Randomised Input
 - [x] Statistics Graph
 - [x] Click sound for each keystroke
+- [x] Correct/incorrect letter count
+- [ ] Restart button
 - [ ] Improve UI/UX
 - [ ] Deployment
 

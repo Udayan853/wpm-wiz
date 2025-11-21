@@ -11,7 +11,7 @@ export default function Home() {
   const [focused, setFocused] = useState(true);
   const { input, inputRef, handleInputChange, letters, caretPos } = useTyping();
   const { time, wpmTimestampRef } = useTimer(input, focused);
-  useTimeoutRedirect(time, wpmTimestampRef);
+  useTimeoutRedirect(time, wpmTimestampRef, input, letters);
 
   return (
     <div

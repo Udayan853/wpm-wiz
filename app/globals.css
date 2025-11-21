@@ -25,8 +25,3 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
-
-active {
-  border-width: 1px;
-  border-left-color: yellow;
-}
