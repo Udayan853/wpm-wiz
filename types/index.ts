@@ -40,3 +40,8 @@ export interface WpmTimestamp {
     time: number;
     wpm: number;
 }
+
+export interface Coordinates {
+    x: number;
+    y: number;
+}

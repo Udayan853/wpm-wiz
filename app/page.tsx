@@ -6,6 +6,7 @@ import { useTyping } from "./hooks/useTyping";
 import { useTimeoutRedirect } from "./hooks/useTimoutRedirect";
 import { WordList } from "./components/WordList";
 import { ClientOnly } from "./components/ClientOnly";
+import { Animation } from "./components/Animation";
 
 export default function Home() {
   const [focused, setFocused] = useState(true);
@@ -15,7 +16,7 @@ export default function Home() {
 
   return (
     <div
-      className="flex flex-col justify-center items-center text-3xl h-full w-screen overflow-hidden"
+      className="flex flex-col justify-center items-center text-3xl h-full w-screen overflow-hidden relative"
       onMouseDown={(e) => {
         e.preventDefault();
         inputRef.current?.focus();
@@ -52,6 +53,7 @@ export default function Home() {
           caretPos={caretPos}
         />
       </ClientOnly>
+      <Animation />
     </div>
   );
 }

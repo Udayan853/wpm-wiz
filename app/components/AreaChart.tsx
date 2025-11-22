@@ -26,7 +26,7 @@ export function AreaChartComponent({ data }: { data: WpmTimestamp[] }) {
                     }}
                     tick={{ fontSize: "0.8rem" }}
                 />
-                <CartesianGrid opacity={0.15} />
+                <CartesianGrid opacity={0.05} />
             </LineChart>
         </ResponsiveContainer >
     );
