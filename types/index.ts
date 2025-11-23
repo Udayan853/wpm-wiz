@@ -33,7 +33,7 @@ export interface Metrics {
 
 export interface StatCardProps {
     title: string;
-    value: number;
+    value: number | string;
 }
 
 export interface WpmTimestamp {

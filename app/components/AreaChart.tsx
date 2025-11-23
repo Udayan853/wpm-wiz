@@ -1,33 +1,39 @@
 import { WpmTimestamp } from "@/types";
 import {
-    LineChart,
+    AreaChart,
     XAxis,
     YAxis,
     ResponsiveContainer,
     CartesianGrid,
-    Line
+    Line,
+    Area
 } from "recharts";
 
 export function AreaChartComponent({ data }: { data: WpmTimestamp[] }) {
     return (
         <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={data}>
-                <Line type="monotone" dataKey="wpm" dot={false} />
-                <XAxis hide={false} tick={{ fontSize: "0.8rem" }} interval={4} />
+            <AreaChart
+                className="text-primary-1 opacity-75"
+                data={data}
+                margin={{ top: 10, right: 20, left: 0, bottom: 10 }}
+            >
+                <Line type="monotone" dataKey="wpm" dot={false} strokeWidth={2} stroke="currentColor" />
+                <Area fillOpacity={0.15} fill="currentColor" type="monotone" dataKey="wpm" dot={false} />
+                <XAxis tick={{ fontSize: "0.8rem", stroke: "currentColor" }} interval={4} />
                 <YAxis
                     yAxisId="left"
                     dataKey="wpm"
-                    hide={false}
                     label={{
                         value: "Words Per Minute",
                         angle: -90,
                         dx: -10,
-                        fontSize: "0.8rem"
+                        fontSize: "0.85rem",
+                        fill: "currentColor"
                     }}
-                    tick={{ fontSize: "0.8rem" }}
+                    tick={{ fontSize: "0.8rem", stroke: "currentColor" }}
                 />
-                <CartesianGrid opacity={0.05} />
-            </LineChart>
+                <CartesianGrid opacity={0.15} />
+            </AreaChart>
         </ResponsiveContainer >
     );
 }

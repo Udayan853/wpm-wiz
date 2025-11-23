@@ -3,7 +3,7 @@ import React from "react";
 
 function LetterComponent({ character, active, color }: LetterProps) {
     const opacity = color === '' ? 'opacity-50' : '';
-    const cursor = active ? 'border-s-yellow-800' : 'border-transparent';
+    const cursor = active ? 'border-s-primary-1' : 'border-transparent';
     return (
         <span className={`${cursor} ${opacity} ${color} border-l-2`} >
             {character}

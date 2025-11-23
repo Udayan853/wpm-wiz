@@ -2,8 +2,8 @@
 @import "tailwind-scrollbar-hide/v4";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #1B3C53;
+  --foreground: #D2C1B6;
 }
 
 @theme inline {
@@ -13,15 +13,29 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@theme {
+  --color-primary-1: #D2C1B6;
+  --color-primary-2: #456882;
+  --color-primary-3: #234C6A;
+  --color-primary-4: #1B3C53;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+@keyframes run {
+  0% {
+    transform: translate(-70px, -40px);
+  }
+
+  100% {
+    transform: translate(-770px, -40px);
+  }
+}
+
+.animate-run {
+  animation: run 1s steps(5) infinite;
 }

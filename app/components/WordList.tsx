@@ -21,9 +21,14 @@ export function WordList({ input, focused, letters, caretPos }: WordListProps) {
         const curBounds = curWord.getBoundingClientRect();
 
         if (curBounds.right > parentBounds.right) {
-            const offset = curBounds.right - parentBounds.right;
+            const offset = parentBounds.right - curBounds.right;
             scrollRef.current += offset;
-            wordList!.style.transform = `translateX(-${scrollRef.current}px)`;
+            wordList!.style.transform = `translateX(${scrollRef.current}px)`;
+        }
+        else if (curBounds.x < parentBounds.x) {
+            const offset = parentBounds.x - curBounds.x
+            scrollRef.current += offset;
+            wordList!.style.transform = `translateX(${scrollRef.current}px)`;
         }
     }, [input]);
 

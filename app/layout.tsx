@@ -14,7 +14,10 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "wpm-wiz",
-  description: "Typing taken to the next level",
+  description: "Measure typing speed",
+  icons: {
+    icon: "/favicon.png"
+  }
 };
 
 export default function RootLayout({

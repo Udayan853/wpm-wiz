@@ -22,6 +22,7 @@ export default function Home() {
         inputRef.current?.focus();
       }}
     >
+      <div className="absolute top-20 font-bold md:font-semibold text-4xl md:text-5xl">WPM Wizard</div>
       <input
         type="text"
         className="absolute opacity-0 focus:outline-none w-px"
@@ -43,7 +44,7 @@ export default function Home() {
         onCompositionEnd={(e) => handleInputChange(e.currentTarget.value)}
       />
       <ClientOnly>
-        <div className="">
+        <div className="font-medium mb-4 text-shadow-lg text-4xl">
           {time}s
         </div>
         <WordList
@@ -53,7 +54,9 @@ export default function Home() {
           caretPos={caretPos}
         />
       </ClientOnly>
-      <Animation />
+      <div className="absolute bottom-8">
+        <Animation />
+      </div>
     </div>
   );
 }
