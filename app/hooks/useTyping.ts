@@ -19,12 +19,13 @@ export function useTyping() {
     }, [input, sound]);
 
     const handleInputChange = (value: string) => {
-        if (value.length > input.length) {
-            setCaretPos(prev => prev + 1);
+        const diff = value.length - input.length;
+        if (diff > 0) {
+            setCaretPos(prev => prev + diff);
             setInput(() => value);
         }
-        else if (value.length < input.length) {
-            setCaretPos(prev => Math.max(prev - 1, 0));
+        else if (diff < 0) {
+            setCaretPos(prev => Math.max(prev + diff, 0));
             setInput(() => value);
         }
         else {
