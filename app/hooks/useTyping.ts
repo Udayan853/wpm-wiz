@@ -1,8 +1,6 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { allWords } from "@/assets";
-import { allWordsToLetters } from "../util";
 import { useSound } from "./useSound";
 
 export function useTyping() {
@@ -11,7 +9,6 @@ export function useTyping() {
 
     const [input, setInput] = useState('');
     const [caretPos, setCaretPos] = useState(0);
-    const [letters] = useState<string[]>(allWordsToLetters(allWords));
 
     useEffect(() => inputRef.current?.focus(), []);
     useEffect(() => {
@@ -32,5 +29,5 @@ export function useTyping() {
             setInput(prev => prev);
         }
     }
-    return { input, handleInputChange, inputRef, letters, caretPos };
+    return { input, handleInputChange, inputRef, caretPos };
 }

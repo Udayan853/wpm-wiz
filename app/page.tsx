@@ -1,62 +1,8 @@
-"use client";
+import { allWordsToLetters } from "./util"
+import { allWords } from "@/assets"
+import { HomePage } from "./home";
 
-import { useState } from "react";
-import { useTimer } from "./hooks/useTimer";
-import { useTyping } from "./hooks/useTyping";
-import { useTimeoutRedirect } from "./hooks/useTimoutRedirect";
-import { WordList } from "./components/WordList";
-import { ClientOnly } from "./components/ClientOnly";
-import { Animation } from "./components/Animation";
-
-export default function Home() {
-  const [focused, setFocused] = useState(true);
-  const { input, inputRef, handleInputChange, letters, caretPos } = useTyping();
-  const { time, wpmTimestampRef } = useTimer(input, focused);
-  useTimeoutRedirect(time, wpmTimestampRef, input, letters);
-
-  return (
-    <div
-      className="flex flex-col justify-center items-center text-3xl h-full w-screen overflow-hidden relative"
-      onMouseDown={(e) => {
-        e.preventDefault();
-        inputRef.current?.focus();
-      }}
-    >
-      <div className="absolute top-20 font-bold md:font-semibold text-4xl md:text-5xl">WPM Wizard</div>
-      <input
-        type="text"
-        className="absolute opacity-0 focus:outline-none w-px"
-        value={input}
-        onChange={(e) => {
-          if (e.nativeEvent instanceof KeyboardEvent) {
-            if (e.nativeEvent.isComposing) return;
-          }
-          handleInputChange(e.target.value);
-        }}
-        ref={inputRef}
-        spellCheck="false"
-        autoCorrect="off"
-        autoCapitalize="none"
-        autoComplete="off"
-        aria-autocomplete="none"
-        onFocus={() => setFocused(true)}
-        onBlur={() => setFocused(false)}
-        onCompositionEnd={(e) => handleInputChange(e.currentTarget.value)}
-      />
-      <ClientOnly>
-        <div className="font-medium mb-4 text-shadow-lg text-4xl">
-          {time}s
-        </div>
-        <WordList
-          input={input}
-          focused={focused}
-          letters={letters}
-          caretPos={caretPos}
-        />
-      </ClientOnly>
-      <div className="absolute bottom-8">
-        <Animation />
-      </div>
-    </div>
-  );
+export default function Page() {
+  const letters = allWordsToLetters(allWords)
+  return <HomePage letters={letters} />;
 }
